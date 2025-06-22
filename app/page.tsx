@@ -83,8 +83,7 @@ export default function Home() {
   if (isLoadingMachine) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gray-50 dark:bg-gray-900">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-        <p className="mt-4 text-gray-600 dark:text-gray-400">Initializing your session...</p>
+        <p className="mt-4 text-gray-600 dark:text-gray-400">Loading...</p>
       </div>
     );
   }
@@ -146,13 +145,13 @@ export default function Home() {
                   </div>
                   <div className="mt-2 sm:mt-0 sm:ml-4 flex items-center gap-3">
                     <span className="text-xs text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
-                      👁️ {url.visitCount || 0}
+                      {url.visitCount || 0} visits
                     </span>
                     <Link
                       href={`/stats/${url.shortId}`}
                       className="text-xs text-blue-600 hover:underline bg-blue-50 dark:bg-blue-900/20 px-2 py-1 rounded"
                     >
-                      📊 Stats
+                      Stats
                     </Link>
                   </div>
                 </div>
@@ -162,14 +161,10 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Creative Footer */}
       <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-8 px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
-                <span className="text-white text-sm font-bold">V</span>
-              </div>
               <h3 className="text-lg font-semibold">Made with ❤️ by Vishnu Goswami</h3>
             </div>
 
@@ -180,27 +175,24 @@ export default function Home() {
 
             <div className="flex flex-wrap justify-center gap-4 mb-6">
               <a
-                href="https://github.com/vishnugoswami"
+                href="https://github.com/WebVishnu"
                 target="_blank"
-                rel="noopener noreferrer"
                 className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
               >
-                <span>🐙</span>
+                <span>👨‍💻</span>
                 <span>GitHub</span>
               </a>
               <a
-                href="https://linkedin.com/in/vishnugoswami"
+                href="https://www.linkedin.com/in/vishnu-goswami/"
                 target="_blank"
-                rel="noopener noreferrer"
                 className="flex items-center gap-2 px-4 py-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-900/30 transition-colors"
               >
                 <span>💼</span>
                 <span>LinkedIn</span>
               </a>
               <a
-                href="https://twitter.com/vishnugoswami"
+                href="https://x.com/VishnuTweets_"
                 target="_blank"
-                rel="noopener noreferrer"
                 className="flex items-center gap-2 px-4 py-2 bg-sky-100 dark:bg-sky-900/20 rounded-lg hover:bg-sky-200 dark:hover:bg-sky-900/30 transition-colors"
               >
                 <span>🐦</span>
@@ -212,9 +204,8 @@ export default function Home() {
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 💡 Want to contribute?
                 <a
-                  href="https://github.com/vishnugoswami/url-shortener"
+                  href="https://github.com/WebVishnu/url-shortner"
                   target="_blank"
-                  rel="noopener noreferrer"
                   className="text-blue-600 hover:underline ml-1"
                 >
                   Star this project on GitHub

@@ -3,7 +3,7 @@ version: '3.8'
 services:
   mongodb:
     image: mongo:latest
-    container_name: url-shortener-mongodb
+    container_name: url-shortener-mongodb-dev
     restart: unless-stopped
     ports:
       - "27017:27017"
@@ -20,18 +20,29 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: production
-    container_name: url-shortener-nextjs
+      target: development
+    container_name: url-shortener-nextjs-dev
     restart: unless-stopped
     ports:
       - "3000:3000"
     environment:
       MONGODB_URI: mongodb://admin:password@mongodb:27017/url-shortener?authSource=admin
-      NODE_ENV: production
+      NODE_ENV: development
     depends_on:
       - mongodb
     networks:
       - url-shortener-network
+    volumes:
+      # Mount source code for hot reloading
+      - ./app:/app/app
+      - ./lib:/app/lib
+      - ./public:/app/public
+      - ./package.json:/app/package.json
+      - ./next.config.ts:/app/next.config.ts
+      - ./tsconfig.json:/app/tsconfig.json
+      - ./postcss.config.mjs:/app/postcss.config.mjs
+      # Exclude node_modules to use container's version
+      - /app/node_modules
 
 volumes:
   mongodb_data:
