@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: url-shortener-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: url-shortener
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - url-shortener-network
+
+  nextjs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: url-shortener-nextjs
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      MONGODB_URI: mongodb://admin:password@mongodb:27017/url-shortener?authSource=admin
+      NODE_ENV: production
+    depends_on:
+      - mongodb
+    networks:
+      - url-shortener-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  url-shortener-network:
+    driver: bridge 
